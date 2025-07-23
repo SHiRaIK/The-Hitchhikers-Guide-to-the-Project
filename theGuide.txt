@@ -1,0 +1,75 @@
+----- How to Project -----
+---- How to Code ----
+---- How to Work ----
+
+
+
+
+
+
+
+---- How to Code ----
+
+---- How to Work ----
+git
+Git will be used as an example of a version control tool. All principals should apply to any other version control tool.
+This section will concentrate on working with parallel changes in files and updates.
+
+Git is designed as a text base version control tool. Which means any other file format (binary, hex) is not tracable by git. 
+If a version control for binaries is needed for example to track Microsoft Word files, then a fitting version control program should be used. For Microsoft Word files the Microsoft 365 cloud provides help with tracing changes from users.
+
+Any good version control tool provides ways to work on files in parallel and merge changes at some point. Some programs get around this by providing "Locks". 
+If someone is working on one file, then he can lock the file to prevent others on adding changes to the file.
+
+Now as for a small project with a couple of people working on it (~10), then most of the time no issues will arise with the version control. 
+Every one knows what other team members are working on and no interest conflicts are created most of the time. And if a conflict for the version control appears, these usually get resolved by forcing a sequencial workflow.
+These conflicts tend to be minor, as ~5 tasks are prepared for the project in parallel.
+E.g.: 
+	Team1 works on file1.c and file2.c
+	Team2 works on file3.c and file2.c
+	Now either Team1 finishes first with file2.c and Team2 will follow or the other way around.	
+
+But even here this is not a good solution. Ideally both teams could work on file2.c in parallel and later merge it in the version control.
+The merge with the version control depends on the difference tracking in the tool. Some track whole files other line changes in the file or even bit/byte changes.
+Depending on the difference tracking of the tool the merge gets more complicated. If the file is checked, then no automated merge can happen. Because the tool does not know which part of the file is changed by whom and when.
+If each bit that changed in the file has been tracked, then the tool can identify which parts have not changed and can override them independently in the file.
+But even here conflicts may be created. 
+
+If Team1 and Team2 modified the same line inside file2.c then git does not know which version to take as both have been modified recently and therefore asks the user what should be set in place.
+This requires additional time and knowledge about the project and the other teams work. 
+These issues are nearly impossible to prevent. 
+
+Now for a big project with many people (~100) developing it these issues surface rather often. And if now text files in specified formats are added the merge of parallel modified files gets more complex.
+
+How to resolve these problems.
+There are several steps which can be taken to reduce the number of file merges. 
+1. Tasks should concern as little files as possible.
+	Yes, it is easy to add a small fix here and there, but these tend to create merge conflicts or problems after adding the changes to the version control tool.
+	Apart from that, it should be made possible for people to add changes even if the task is not finished yet. (Apply changes in preperation for the task) And have one task be added in several steps. This has one Precondition: The user should be aware of how the version control tool works and when adding is useful.
+2. Tasks should be accessable/visible to everyone.
+	There should be some kind of link/explanation in the checkin of files about the task. That way others may gain knowledge about your doing and upkeep it.
+3. 	a) Update your workfile as often as possible.
+		At best before you leave work. Get the newest changes from the version control and add them to your work. This way you will only have to remember what you did this day and change the new workfiles accordingly.
+	b) Update your workfile only once
+		This heavily coherse with 1. ,after which the task should be small and accessable. And as your task is finished update it with the version control and changes from other teams.
+		By this approach in the long run big tasks will be ignored and pile up. At some point a project rework is in order, which basically freezes the project.
+4. Warn Teams about impending big changes and locked files
+	If big changes are needed warn other teams about them and keep track of the changes. Or in the worst case lock files for other teams.
+
+How to ease merges
+1. For specific format text files try to introduce plugins to help merging. (i.e. git-json-merge)
+	For nearly every file format there is a merge helper. Add these to the version control as needed and train people in them.
+2. accessability for tasks and changes in the project
+	changes added should be easy trackable through comments and links
+3. usefull comments for changes
+	any guide for version control tools will tell: "How to write comments"
+	This will help users to understand changes and keep them
+
+Conclusion:
+"This requires additional time and knowledge about the project and the other teams work." - Yes it does.
+If an easy transition for many merges are needed, then this point needs to be taken and set up. As a project grows this is usually unpreventable. The bigger a project is the more knowledge needs to be transfered and visible.
+Here a good project structure helps to split the project when necessary into smaller parts, which have a predefined relation to each other. 
+Defining minimal relations between project parts is often not considered, as it is seen as a "one time change" or "to be reworked".
+And as long as a project is profitable it will grow regardless of needs. 
+
+
